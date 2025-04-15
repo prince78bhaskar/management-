@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>add patient</title>
+  <style>
+    /* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  color: #444;
+  animation: slideDown 1s ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Form styles */
+form {
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease-in-out;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+  animation: fadeIn 2s ease-in-out;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+  </style>
+ 
+</head>
+<body>
+  <h2>ADD PATIENTS</h2>
+  <div>
+    <h2><a href="list.html">LIST OF THE PATIENTS</a></h2>
+  </div>
+  <div>
+    <form id="addPatientForm">
+      <div>
+        <label for="name">NAME</label>
+        <input id="name" type="text" placeholder="Enter the name of the patient" required />
+      </div>
+      <div>
+        <label for="age">AGE</label>
+        <input id="age" type="text" placeholder="Enter the age of the patient" required />
+      </div>
+      <div>
+        <label for="bed-number">BED NUMBER</label>
+        <input id="bed-number" type="text" placeholder="Enter the bed number" required />
+      </div>
+      <div>
+        <label for="disease">DISEASE</label>
+        <input id="disease" type="text" placeholder="Enter the disease" required />
+      </div>
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+    <footer>
+      <div>
+        <P>THIS WEBSITE/APPLICATION DESIGEN BY MR.PRINCE BHASKAR</P>
+        <p>&copy; 2025 All rights reserved. 38923</p>
+    </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("addPatientForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const age = document.getElementById("age").value.trim();
+      const bedNumber = document.getElementById("bed-number").value.trim();
+      const disease = document.getElementById("disease").value.trim();
+  
+      // Create patient object
+      const newPatient = {
+        name,
+        age,
+        bedNumber,
+        disease
+      };
+  
+      // Get existing patients from localStorage
+      let patients = JSON.parse(localStorage.getItem("patients")) || [];
+  
+      // Add new patient to the array
+      patients.push(newPatient);
+  
+      // Save back to localStorage
+      localStorage.setItem("patients", JSON.stringify(patients));
+  
+      // Optional: Clear form fields
+      document.getElementById("addPatientForm").reset();
+  
+      // Redirect to the list page
+      window.location.href = "list.html";
+    });
+  </script>
+  
+</body>
+</html>

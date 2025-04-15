@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>List of Patients</title>
+  <style>
+    /* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  color: #444;
+}
+
+/* Table styles */
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Link styles */
+a {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+}
+
+footer p {
+  margin: 5px 0;
+}
+  </style>
+</head>
+<body>
+  <h2>List of Patients</h2>
+
+  <table id="patientTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Bed Number</th>
+        <th>Disease</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Patient data will be inserted here -->
+      
+    </tbody>
+  </table>
+
+  <a href="add.html">← Back to Add Patient</a>
+  <footer>
+    <div>
+      <P>THIS WEBSITE/APPLICATION DESIGEN BY MR.PRINCE BHASKAR</P>
+      <p>&copy; 2025 All rights reserved. 38923</p>
+  </div>
+  </footer>
+
+  <script>
+    // Retrieve patient data from localStorage
+    const patients = JSON.parse(localStorage.getItem("patients")) || [];
+
+    const tbody = document.querySelector("#patientTable tbody");
+
+    // Check if there are any patients
+    if (patients.length === 0) {
+      const row = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.colSpan = 4;
+      cell.textContent = "No patients found.";
+      row.appendChild(cell);
+      tbody.appendChild(row);
+    } else {
+      // Loop through and insert into the table
+      patients.forEach(patient => {
+        const row = document.createElement("tr");
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = patient.name;
+        row.appendChild(nameCell);
+
+        const ageCell = document.createElement("td");
+        ageCell.textContent = patient.age;
+        row.appendChild(ageCell);
+
+        const bedCell = document.createElement("td");
+        bedCell.textContent = patient.bedNumber;
+        row.appendChild(bedCell);
+
+        const diseaseCell = document.createElement("td");
+        diseaseCell.textContent = patient.disease;
+        row.appendChild(diseaseCell);
+
+        tbody.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
